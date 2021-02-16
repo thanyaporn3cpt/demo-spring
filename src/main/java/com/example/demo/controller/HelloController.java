@@ -1,6 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.model.Cosmetic;
+import com.example.demo.request.CosmeticRequest;
+import com.example.demo.sevices.CosmeticService;
+import lombok.val;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
@@ -9,6 +13,13 @@ import java.util.List;
 
 @RestController
 public class HelloController {
+
+
+    private CosmeticService cosmeticService;
+    @Autowired
+    public HelloController(CosmeticService cosmeticService){
+        this.cosmeticService=cosmeticService;
+    }
     List<Cosmetic> cosmetics = new ArrayList<>(Arrays.asList(
             new Cosmetic("LIP001", "XOXO Lipstick", 1),
             new Cosmetic("BRO001", "NYX Brush On Palette", 1),
@@ -25,12 +36,9 @@ public class HelloController {
     }
 
     @RequestMapping(value = "/insert", method = RequestMethod.POST)
-    public List<Cosmetic> postCmt(@RequestBody Cosmetic tempCosmetic){
-        tempCosmetic.setId(tempCosmetic.getId());
-        tempCosmetic.setName(tempCosmetic.getName());
-        tempCosmetic.setAmount(tempCosmetic.getAmount());
-        cosmetics.add(tempCosmetic);
-        return cosmetics;
+    public Cosmetic postCmt(@RequestBody CosmeticRequest cosmeticRequest){
+        Cosmetic newCosmetic = cosmeticService.newCosmetic(cosmeticRequest);
+        return newCosmetic;
     }
 
     @RequestMapping(value = "/edit/{id}", method = RequestMethod.PUT)
