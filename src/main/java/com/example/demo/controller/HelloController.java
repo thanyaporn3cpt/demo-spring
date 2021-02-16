@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.model.Cosmetic;
+//import com.example.demo.model.Cosmetic;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -17,9 +17,9 @@ public class HelloController {
         return "Greetings from Spring Boot!";
     }
 
-    @RequestMapping(value = "/cosmetic", method= RequestMethod.POST)
-    public List<Cosmetic> getAllCosmetics() {
-        return null;
-    }
+//    @RequestMapping(value = "/cosmetic", method= RequestMethod.POST)
+//    public List<Cosmetic> getAllCosmetics() {
+//        return null;
+//    }
 
 }

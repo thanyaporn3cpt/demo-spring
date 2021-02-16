@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.jdbc.metadata.CompositeDataSourcePoolMetadataProvider;
 
 @SpringBootApplication
 public class DemoApplication implements CommandLineRunner {
@@ -24,10 +23,11 @@ public class DemoApplication implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		LOG.info("EXECUTING : command line runner");
 		Cosmetic cosmetic = Cosmetic.builder()
+				.id("xxxx")
 				.name("XOXO Lipstick")
 				.amount(1000000)
 				.build();
-		//cosmeticRepo.save(cosmetic);
+		cosmeticRepo.save(cosmetic);
 		System.out.println(cosmetic);
 	}
 }
